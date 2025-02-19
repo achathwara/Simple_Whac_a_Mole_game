@@ -9,23 +9,35 @@ public class Game {
     JButton[] board = new JButton[9];
     JPanel boardPanel = new JPanel();
     public Game() {
-        //JFrame
-        jFrame.setVisible(true);        //to visibly run
-        jFrame.setSize(600, 650);       //managing size
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//to close with exit key
+                //JFrame
 
-        jFrame.setLocationRelativeTo(null);
-        jFrame.setResizable(false);     //to disable the sizing icon
+        frame.setSize(600, 700);       //managing size
+        //
 
-        jFrame.setLayout(new BorderLayout());       //North, South, East, West, Center
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);     //to disable the sizing icon
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//to close with exit key
+
+        frame.setLayout(new BorderLayout());       //North, South, East, West, Center
 
         //JLabel
         textLabel.setText("Score : 00");
         textLabel.setFont(new Font("Arial", Font.PLAIN, 40));
 
         textPanel.add(textLabel);
-        jFrame.add(textPanel);
+        frame.add(textPanel, BorderLayout.NORTH);
 
+        //Buttons
+        boardPanel.setLayout(new GridLayout(3,3));
+
+        for(int i = 1; i < 9; i++){
+            JButton tile = new JButton();
+            board[i] = tile;
+            boardPanel.add(tile);
+            frame.add(boardPanel);
+        }
+
+        frame.setVisible(true);        //to visibly run
 
 
 
