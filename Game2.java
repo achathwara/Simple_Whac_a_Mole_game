@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class Game2 {
     JFrame frame = new JFrame("Whack A Mole");
@@ -8,6 +12,17 @@ public class Game2 {
 
     JButton[] board = new JButton[9];
     JPanel boardPanel = new JPanel();
+
+    ImageIcon animalIcon;
+    ImageIcon hammerIcon;
+
+    JButton currentAnimeTile;
+    JButton currentHammerTile;
+
+    Random random = new Random();
+
+    Timer setAnimeTimer;
+    Timer setHammerTimer;
 
     public Game2() {
 
@@ -40,6 +55,23 @@ public class Game2 {
             tile.setFocusable(false);
             frame.add(boardPanel);
         }
+
+        //Timer
+        setAnimeTimer = new Timer(1000, new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                if(currentAnimeTile != null){
+                    currentAnimeTile.setIcon(null);
+                    currentAnimeTile = null;
+                }
+                int num = random.nextInt(9);    //if it choose 5
+                JButton tile = board[num];
+
+                tile.setIcon(animalIcon);
+                currentAnimeTile = tile;
+            }
+        });
+        setAnimeTimer.start();
 
         frame.setVisible(true);
     }
